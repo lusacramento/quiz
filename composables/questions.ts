@@ -1,5 +1,6 @@
 const questions = [
 	{
+		number: 1,
 		q: 'What is 2 + 2?',
 		answers: [
 			{
@@ -21,6 +22,7 @@ const questions = [
 		],
 	},
 	{
+		number: 2,
 		q: 'How many letters are in the word "Banana"?',
 		answers: [
 			{
@@ -42,6 +44,7 @@ const questions = [
 		],
 	},
 	{
+		number: 3,
 		q: 'Find the missing letter: C_ke',
 		answers: [
 			{
