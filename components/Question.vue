@@ -1,19 +1,19 @@
 <template>
 	<div class="single-question">
-		<div class="question">
-			{{ question.question.number }}) {{ question.question.q }}
-		</div>
-		<Answers />
+		<div class="question">{{ question.number }}) {{ question.q }}</div>
+		<Answers :answers="question.answers" />
 	</div>
 </template>
 
 <script lang="ts" setup>
-	const question = defineProps({
+	const data = defineProps({
 		question: {
 			type: Object,
 			required: true,
 		},
 	})
+
+	const question = data.question
 </script>
 
 <style>
