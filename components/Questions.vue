@@ -5,7 +5,7 @@
 				:questionsAnswered="questionsAnswered"
 				:totalQuestions="totalQuestions"
 			/>
-			<Question />
+			<Question :question="currentQuestion" />
 		</div>
 		<Result />
 		<Button />

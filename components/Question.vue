@@ -1,11 +1,20 @@
 <template>
 	<div class="single-question">
-		<div class="question">Sample Question 1</div>
+		<div class="question">
+			{{ question.question.number }}) {{ question.question.q }}
+		</div>
 		<Answers />
 	</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+	const question = defineProps({
+		question: {
+			type: Object,
+			required: true,
+		},
+	})
+</script>
 
 <style>
 	.single-question {
