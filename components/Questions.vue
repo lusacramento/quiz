@@ -1,15 +1,24 @@
 <template>
 	<div class="ctr">
 		<div class="questions-ctr">
-			<Progress />
-			<Question />
+			<Progress
+				:questionsAnswered="questionsAnswered"
+				:totalQuestions="totalQuestions"
+			/>
+			<Question :question="currentQuestion" />
 		</div>
 		<Result />
 		<Button />
 	</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+	const questions = useQuestions().questions
+	const totalQuestions = questions.length
+
+	let questionsAnswered = 0
+	const currentQuestion = questions[questionsAnswered]
+</script>
 
 <style>
 	* {

@@ -1,13 +1,19 @@
 <template>
-	<div class="answers">
-		<div class="answer">Sample Answer 1</div>
-		<div class="answer">Sample Answer 2</div>
-		<div class="answer">Sample Answer 3</div>
-		<div class="answer">Sample Answer 4</div>
+	<div class="answers" v-for="answer in answers">
+		<div class="answer">{{ answer.option }}) {{ answer.text }}</div>
 	</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+	const data = defineProps({
+		answers: {
+			type: Array,
+			required: true,
+		},
+	})
+
+	const answers: any = data.answers
+</script>
 
 <style>
 	.answer {
