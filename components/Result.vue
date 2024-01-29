@@ -1,11 +1,14 @@
 <template>
 	<div class="result">
-		<div class="title">You got sample result 1!</div>
-		<div class="desc">Enter a short description here about the result.</div>
+		<div class="title">{{ hit }} hits. {{ result.title }}</div>
+		<div class="desc">{{ result.description }}</div>
 	</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+	const hit = useQuestions().hit
+	const result = useQuestions().result
+</script>
 
 <style>
 	.result {
