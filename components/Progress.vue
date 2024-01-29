@@ -2,23 +2,14 @@
 	<div class="progress">
 		<div class="bar"></div>
 		<div class="status">
-			{{ questionsAnswered }} out of {{ totalQuestions }} questions answered
+			{{ progress }} out of {{ questionsNumber }} questions answered
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	const props = defineProps({
-		questionsAnswered: {
-			type: Number,
-			required: true,
-		},
-
-		totalQuestions: {
-			type: Number,
-			required: true,
-		},
-	})
+	const progress = useQuestions().progress
+	const questionsNumber = useQuestions().questionsNumber
 </script>
 
 <style>

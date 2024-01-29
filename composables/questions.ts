@@ -74,6 +74,8 @@ const questions = [
 	},
 ]
 
+const questionsNumber = questions.length
+
 const results = [
 	{
 		min: 0,
@@ -89,11 +91,100 @@ const results = [
 	},
 ]
 
-const counter = {
-	value: 0,
-	increment: () => counter.value++,
+const progress = ref(0)
+
+const hit = ref(0)
+
+let indexQuestion = 0
+
+let currentQuestion = ref(questions[indexQuestion])
+
+const isFinished = ref(false)
+
+function nextStep(isCorrect: boolean) {
+	checkHit(isCorrect)
+
+	progress.value++
+
+	if (isFinishedQuestions()) {
+		showResult()
+		isFinished.value = true
+	} else {
+		getNextAnswer()
+	}
+
+	function checkHit(isCorrect: boolean) {
+		if (isCorrect) {
+			hit.value++
+		}
+	}
+
+	function isFinishedQuestions() {
+		return indexQuestion === questionsNumber - 1
+	}
+
+	function getNextAnswer() {
+		indexQuestion++
+		currentQuestion.value = questions[indexQuestion]
+	}
+}
+
+const result = ref({
+	hit: 0,
+	title: 'Title',
+	description: 'Description',
+})
+
+function showResult() {
+	results.forEach((result2) => {
+		switch (true) {
+			case isApproved():
+				getResult()
+				break
+
+			case isDisapproved():
+				getResult()
+			default:
+				break
+		}
+
+		function getResult() {
+			result.value.hit = hit.value
+			result.value.title = result2.title
+			result.value.description = result2.desc
+		}
+
+		function isDisapproved() {
+			return hit.value >= result2.min && hit.value <= result2.max
+		}
+
+		function isApproved() {
+			return hit.value >= result2.min && hit.value <= result2.max
+		}
+	})
+}
+
+function reset() {
+	progress.value = 0
+	hit.value = 0
+	indexQuestion = 0
+	currentQuestion.value = questions[indexQuestion]
+	result.value.hit = 0
+	result.value.title = ''
+	result.value.description = ''
+
+	isFinished.value = false
 }
 
 export const useQuestions = () => {
-	return { questions, results, counter }
+	return {
+		progress,
+		questionsNumber,
+		currentQuestion,
+		hit,
+		result,
+		nextStep,
+		isFinished,
+		reset,
+	}
 }

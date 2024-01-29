@@ -1,18 +1,16 @@
 <template>
-	<div class="answers" v-for="answer in answers">
-		<div class="answer">{{ answer.option }}) {{ answer.text }}</div>
+	<div class="answers" v-for="answer in currentQuestion.answers">
+		<div
+			class="answer"
+			@click.prevent="useQuestions().nextStep(answer.isCorrect)"
+		>
+			{{ answer.option }}) {{ answer.text }}
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	const data = defineProps({
-		answers: {
-			type: Array,
-			required: true,
-		},
-	})
-
-	const answers: any = data.answers
+	const currentQuestion = useQuestions().currentQuestion
 </script>
 
 <style>

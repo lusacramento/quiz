@@ -1,8 +1,10 @@
 <template>
-	<button type="button" class="reset-btn">Reset</button>
+	<button type="button" class="reset-btn" @click.prevent="reset">Reset</button>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+	const reset = useQuestions().reset
+</script>
 
 <style>
 	.reset-btn {

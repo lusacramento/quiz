@@ -1,23 +1,16 @@
 <template>
 	<div class="ctr">
 		<div class="questions-ctr">
-			<Progress
-				:questionsAnswered="questionsAnswered"
-				:totalQuestions="totalQuestions"
-			/>
-			<Question :question="currentQuestion" />
+			<Progress />
+			<Question v-show="!isFinished" />
 		</div>
-		<Result />
+		<Result v-show="isFinished" />
 		<Button />
 	</div>
 </template>
 
 <script lang="ts" setup>
-	const questions = useQuestions().questions
-	const totalQuestions = questions.length
-
-	let questionsAnswered = 0
-	const currentQuestion = questions[questionsAnswered]
+	const isFinished = useQuestions().isFinished
 </script>
 
 <style>
